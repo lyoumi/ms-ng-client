@@ -4,7 +4,14 @@
   <input type="text" [(ngModel)]="title">
   <ul>
     <li *ngFor="let n of arr">
-      <pre>{{ n | json }} </pre>
+      <div *ngIf="n">
+        <small>Name: {{ n.username }}, {{ n.age }}y.o.</small>
+        <ul>
+          <li *ngFor="let skill of n.skills">
+            <p>Skill: {{ skill.title }} -- {{ skill.score }} points</p>
+          </li>
+        </ul>
+      </div>
     </li>
   </ul>
 </div>
