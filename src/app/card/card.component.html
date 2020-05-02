@@ -2,17 +2,9 @@
   <h2>App Component</h2>
   <p>{{ title }}</p>
   <input type="text" [(ngModel)]="title">
-  <ul>
-    <li *ngFor="let n of arr">
-      <div *ngIf="n">
-        <small>Name: {{ n.username }}, {{ n.age }}y.o.</small>
-        <ul>
-          <li *ngFor="let skill of n.skills">
-            <p>Skill: {{ skill.title }} -- {{ skill.score }} points</p>
-          </li>
-        </ul>
-      </div>
-    </li>
-  </ul>
+  <app-user
+    *ngFor="let usr of arr"
+    [user]="usr"
+  ></app-user>
 </div>
 

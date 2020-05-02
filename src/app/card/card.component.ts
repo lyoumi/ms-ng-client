@@ -1,15 +1,6 @@
 import {Component} from "@angular/core";
+import {User} from "../app.component";
 
-interface Skill {
-  title: string
-  score: number
-}
-
-interface User {
-  username: string
-  age: number
-  skills: Skill[]
-}
 
 @Component({
   selector: 'app-card',
