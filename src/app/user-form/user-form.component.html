@@ -1,0 +1,31 @@
+<div class="user-form">
+  <input
+    type="text"
+    placeholder="username"
+    [(ngModel)]="user.username"
+  >
+  <br/>
+  <input
+    type="number"
+    placeholder="age"
+    [(ngModel)]="user.age"
+  >
+  <hr/>
+  <div *ngFor="let skill of user.skills">
+    <div *ngIf="skill">
+      <input
+        type="text"
+        placeholder="Skill name"
+        [(ngModel)]="skill.title"
+      >
+      <input
+        type="number"
+        placeholder="Skill score (0..9)"
+        [(ngModel)]="skill.score"
+      >
+      <br>
+    </div>
+  </div>
+  <button (click)="addSkill()">Add skill</button>
+  <button (click)="addUser()">Save</button>
+</div>
