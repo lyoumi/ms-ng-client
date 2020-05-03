@@ -3,8 +3,14 @@
 
   <app-user-form (onSave)="addUser($event)"></app-user-form>
   <input [(ngModel)]="search" placeholder="Search by skill title">
+  <select [(ngModel)]="field">
+    <option value="username">username</option>
+    <option value="age">age</option>
+    <option value="job title">title</option>
+    <option value="job score">score</option>
+  </select>
   <app-user
-    *ngFor="let usr of users | skillFilter: search"
+    *ngFor="let usr of users | skillFilter:search:field"
     [user]="usr"
   ></app-user>
 

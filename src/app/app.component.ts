@@ -24,6 +24,7 @@ export class AppComponent {
     null
   ]
   search: string;
+  field: string;
 
   addUser(user: User) {
     this.users.unshift(user)
