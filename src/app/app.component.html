@@ -2,8 +2,9 @@
   <h1>Hello world</h1>
 
   <app-user-form (onSave)="addUser($event)"></app-user-form>
+  <input [(ngModel)]="search" placeholder="Search by skill title">
   <app-user
-    *ngFor="let usr of users"
+    *ngFor="let usr of users | skillFilter: search"
     [user]="usr"
   ></app-user>
 

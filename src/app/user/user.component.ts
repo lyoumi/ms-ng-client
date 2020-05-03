@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
 import {User} from "../app.component";
 
 @Component({
@@ -14,5 +14,4 @@ export class UserComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

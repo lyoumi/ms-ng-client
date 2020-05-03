@@ -23,6 +23,7 @@ export class AppComponent {
     { username: 'Petya', age:20, skills: [{title: 'Angular', score: 6}, {title: 'HTTP', score: 7}] },
     null
   ]
+  search: string;
 
   addUser(user: User) {
     this.users.unshift(user)
