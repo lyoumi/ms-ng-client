@@ -14,9 +14,11 @@ export class SkillFilterPipe implements PipeTransform {
       if (!user || !user.skills) {
         return false;
       }
-      return user.skills.filter(skill => skill && skill.title)
+      return user.skills
+        .filter(skill => skill && skill.title)
         .map(skill => skill.title)
-        .includes(searchText);
+        .filter(title => title.toLowerCase().includes(searchText.toLowerCase()))
+        .length > 0;
     });
   }
 
