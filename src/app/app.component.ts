@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
 
 export interface Skill {
-  title: string
-  score: number
+  name: string
+  level: string
 }
 
 export interface User {
-  username: string
-  age: number
+  name: string
+  email: string
+  password: string
   skills: Skill[]
 }
 
@@ -19,8 +20,8 @@ export interface User {
 })
 export class AppComponent {
   users: User[] = [
-    { username: 'Vasya', age: 23, skills: [{title: 'Java', score: 9}, {title: 'SQL', score: 8}] },
-    { username: 'Petya', age:20, skills: [{title: 'Angular', score: 6}, {title: 'HTTP', score: 7}] },
+    { name: 'Vasya', email: 'pupokin@gmail.com', password: '123', skills: [{name: 'Java', level: 'Middle'}, {name: 'SQL', level: 'Junior'}] },
+    { name: 'Petya', email: 'pe@gmail.com', password: '1231', skills: [{name: 'Angular', level: 'junior'}, {name: 'HTTP', level: 'Junior'}] },
     null
   ]
   search: string;

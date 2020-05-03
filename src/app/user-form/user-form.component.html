@@ -1,31 +1,92 @@
-<div class="user-form">
-  <input
-    type="text"
-    placeholder="username"
-    [(ngModel)]="user.username"
-  >
-  <br/>
-  <input
-    type="number"
-    placeholder="age"
-    [(ngModel)]="user.age"
-  >
-  <hr/>
-  <div *ngFor="let skill of user.skills">
-    <div *ngIf="skill">
-      <input
-        type="text"
-        placeholder="Skill name"
-        [(ngModel)]="skill.title"
-      >
-      <input
-        type="number"
-        placeholder="Skill score (0..9)"
-        [(ngModel)]="skill.score"
-      >
-      <br>
+<form class="user-form" [formGroup]="form" (ngSubmit)="submit()">
+  <h1>Angular Forms</h1>
+
+  <div class="form-control">
+    <label>Email</label>
+    <input type="text" placeholder="Email" formControlName="email">
+    <div class="validation"
+         *ngIf="form.get('email').touched && form.get('email').invalid"
+    >
+      <small *ngIf="form.get('email').errors.required">Email should be present</small>
+      <small *ngIf="form.get('email').errors.email">Email should be valid (me@email.com)</small>
+      <small *ngIf="form.get('email').errors.uniqEmail">Candidate with this email already exists</small>
     </div>
   </div>
-  <button (click)="addSkill()">Add skill</button>
-  <button (click)="addUser()">Save</button>
-</div>
+
+  <div class="form-control">
+    <label>Name</label>
+    <input type="text" placeholder="Name" formControlName="name">
+    <div class="validation"
+         *ngIf="form.get('name').touched && form.get('name').invalid"
+    >
+      <small *ngIf="form.get('name').errors.required">
+        Name must be present
+      </small>
+    </div>
+  </div>
+
+  <div class="form-control">
+    <label>Password</label>
+    <input type="password" placeholder="password" formControlName="password">
+    <div class="validation"
+         *ngIf="form.get('password').touched && form.get('password').invalid"
+    >
+      <small *ngIf="form.get('password').errors.required">
+        Password cannot be empty
+      </small>
+      <small *ngIf="form.get('password').errors.minlength">
+        Password must be at least {{ form.get('password').errors.minlength.requiredLength }} characters.
+        Current length: {{ form.get('password').errors.minlength.actualLength }} characters
+      </small>
+    </div>
+  </div>
+
+  <div class="card" formGroupName="address">
+    <h2>Address</h2>
+
+    <div class="form-control">
+      <label>Country</label>
+
+      <select formControlName="country">
+        <option value="ua">Ukraine</option>
+        <option value="ru">Russia</option>
+        <option value="by">Belarus</option>
+      </select>
+    </div>
+
+    <div class="form-control">
+      <label>City</label>
+      <input type="text" placeholder="City" formControlName="city">
+      <div class="validation"
+           *ngIf="form.get('address').get('city').touched && form.get('address').get('city').invalid"
+      >
+        <small *ngIf="form.get('address').get('city').errors.required">
+          City must be present
+        </small>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" formGroupName="skills">
+    <h2>Skills</h2>
+    <button class="btn" type="button" (click)="addSkill()">Add skill</button>
+    <div
+      class="form-control"
+      *ngFor="let control of controls;  let idx = index"
+      [formGroupName]="idx"
+    >
+      <label>Job title:</label>
+      <input type="text" placeholder="Job title" formControlName="name">
+      <label>Job level:</label>
+      <select formControlName="level">
+        <option value="beginner">Beginner</option>
+        <option value="junior">Junior</option>
+        <option value="middle">Middle</option>
+        <option value="senior">Senior</option>
+        <option value="architect">Architect</option>
+      </select>
+    </div>
+  </div>
+
+  <button class="btn" type="submit" [disabled]="form.invalid">Save</button>
+</form>

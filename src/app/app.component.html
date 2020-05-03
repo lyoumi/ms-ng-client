@@ -1,17 +1,19 @@
 <div class="container">
-  <h1>Hello world</h1>
 
   <app-user-form (onSave)="addUser($event)"></app-user-form>
-  <input [(ngModel)]="search" placeholder="Search by skill title">
-  <select [(ngModel)]="field">
-    <option value="username">Username</option>
-    <option value="age">Age</option>
-    <option value="job title">Job title</option>
-    <option value="score">Job score</option>
-  </select>
-  <app-user
-    *ngFor="let usr of users | skillFilter:search:field"
-    [user]="usr"
-  ></app-user>
+
+  <div class="card">
+    <input [(ngModel)]="search" placeholder="Search by everithing">
+    <select [(ngModel)]="field">
+      <option value="username">Username</option>
+      <option value="job title">Job title</option>
+      <option value="level">Job level</option>
+    </select>
+
+    <app-user
+      *ngFor="let usr of users | skillFilter:search:field"
+      [user]="usr"
+    ></app-user>
+  </div>
 
 </div>

@@ -14,20 +14,16 @@ export class SkillFilterPipe implements PipeTransform {
     switch (field) {
       case 'username':
         return users
-          .filter(user => user && user.username)
-          .filter(user => user.username.toLowerCase().includes(searchText.toLowerCase()))
-      case 'age':
-        return users
-          .filter(user => user && user.age)
-          .filter(user => user.age.toString() === searchText)
-      case 'score':
+          .filter(user => user && user.name)
+          .filter(user => user.name.toLowerCase().includes(searchText.toLowerCase()))
+      case 'level':
         return users
           .filter(user => user && user.skills)
           .filter(user => {
             return user.skills
-              .filter(skill => skill && skill.score)
-              .map(skill => skill.score)
-              .filter(score => score.toString() === searchText)
+              .filter(skill => skill && skill.level)
+              .map(skill => skill.level)
+              .filter(skillLevel => skillLevel.toLowerCase().includes(searchText.toLowerCase()))
               .length > 0;
           });
       default:
@@ -35,9 +31,9 @@ export class SkillFilterPipe implements PipeTransform {
           .filter(user => user && user.skills)
           .filter(user => {
             return user.skills
-              .filter(skill => skill && skill.title)
-              .map(skill => skill.title)
-              .filter(title => title.toLowerCase().includes(searchText.toLowerCase()))
+              .filter(skill => skill && skill.name)
+              .map(skill => skill.name)
+              .filter(skillName => skillName.toLowerCase().includes(searchText.toLowerCase()))
               .length > 0;
           });
     }

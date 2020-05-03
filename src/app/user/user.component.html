@@ -1,8 +1,9 @@
-<div class="user" *ngIf="user">
-  <small>Name: {{ user.username }}, {{ user.age }}y.o.</small>
+<div class="card" *ngIf="user">
+  <h1>{{ user.name }}</h1>
+  <h2>Email: {{ user.email }}</h2>
   <ul>
     <li *ngFor="let skill of user.skills">
-      <p>Skill: {{ skill.title }} -- {{ skill.score }} points</p>
+      <p>{{ skill.name }}: {{ skill.level | titlecase }}</p>
     </li>
   </ul>
 </div>

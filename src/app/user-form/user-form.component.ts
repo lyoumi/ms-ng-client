@@ -1,5 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {Skill, User} from "../app.component";
+import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
+import {UserValidator} from "./user.validator";
+import {User} from "../app.component";
 
 @Component({
   selector: 'app-user-form',
@@ -7,41 +9,44 @@ import {Skill, User} from "../app.component";
   styleUrls: ['./user-form.component.scss']
 })
 export class UserFormComponent implements OnInit {
-
-  //replace with select
-  //skillNames: string[] = ['Angular', 'Java', 'SQL', 'HTTP', 'Design Patters'];
-  //skillScores = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-
   @Output() onSave: EventEmitter<User> = new EventEmitter<User>()
 
-  user: User = new class implements User {
-    age: number;
-    skills: Skill[] = [];
-    username: string;
-  }
+  form: FormGroup;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.form = new FormGroup({
+      email: new FormControl('', [Validators.email, Validators.required], UserValidator.uniqEmail),
+      password: new FormControl('', [Validators.required, Validators.minLength(8)]),
+      name: new FormControl('', Validators.required),
+      address: new FormGroup({
+        country: new FormControl('ua'),
+        city: new FormControl('', Validators.required)
+      }),
+      skills: new FormArray([])
+    });
   }
 
-  addUser() {
-    this.onSave.emit(this.user);
-    this.cleanUpForm();
+  submit() {
+    if (this.form.valid) {
+      let user: User = this.form.value;
+      this.onSave.emit(user);
+      console.log(user);
+      this.form.reset()
+    }
   }
 
   addSkill() {
-    this.user.skills.push(new class implements Skill {
-      score: number;
-      title: string;
-    })
+    const skill: FormGroup = new FormGroup({
+      name: new FormControl('', Validators.required),
+      level: new FormControl('junior')
+    });
+
+    (this.form.get('skills') as FormArray).insert(0, skill)
   }
 
-  private cleanUpForm() {
-    this.user = new class implements User {
-      age: number;
-      skills: Skill[] = [];
-      username: string;
-    }
+  get controls() {
+    return (this.form.get('skills') as FormArray).controls
   }
 }
