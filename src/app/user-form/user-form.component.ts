@@ -31,7 +31,7 @@ export class UserFormComponent implements OnInit {
   }
 
   addSkill() {
-    this.user.skills.unshift(new class implements Skill {
+    this.user.skills.push(new class implements Skill {
       score: number;
       title: string;
     })

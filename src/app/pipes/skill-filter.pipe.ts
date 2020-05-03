@@ -2,7 +2,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 import {User} from "../app.component";
 
 @Pipe({
-  name: 'skillFilter'
+  name: 'skillFilter',
+  pure: false
 })
 export class SkillFilterPipe implements PipeTransform {
 
