@@ -1,5 +1,5 @@
 <div class="card" *ngIf="candidate">
-  <h1>{{ candidate.name }}</h1>
+  <h1>{{ candidate.name }}, {{candidate.address.country}}, {{candidate.address.city}}</h1>
   <h2>Email: {{ candidate.email }}</h2>
   <ul>
     <li *ngFor="let skill of candidate.skills">

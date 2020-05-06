@@ -1,8 +1,15 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {CandidateService} from "./services/candidate.service";
+import {log} from "util";
 
 export interface Skill {
   name: string
   level: string
+}
+
+interface Address {
+  country: string
+  city: string
 }
 
 export interface Candidate {
@@ -10,6 +17,7 @@ export interface Candidate {
   email: string
   age: number
   skills: Skill[]
+  address: Address
 }
 
 
@@ -18,16 +26,24 @@ export interface Candidate {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  candidates: Candidate[] = [
-    { name: 'Vasya', email: 'pupokin@gmail.com', age: 23, skills: [{name: 'Java', level: 'Middle'}, {name: 'SQL', level: 'Junior'}] },
-    { name: 'Petya', email: 'pe@gmail.com', age: 42, skills: [{name: 'Angular', level: 'junior'}, {name: 'HTTP', level: 'Junior'}] },
-    null
-  ]
+export class AppComponent implements OnInit{
+
+  constructor(private candidateService: CandidateService) {
+  }
+
+  candidates: Candidate[] = []
   search: string;
   field: string;
 
   addCandidate(candidate: Candidate) {
-    this.candidates.unshift(candidate)
+    this.candidateService.createCandidate(candidate)
+      .subscribe(response => console.log(response))
+  }
+
+  ngOnInit(): void {
+    this.candidateService.getAllCandidates().subscribe(response => {
+      console.log(response)
+      this.candidates = response;
+    })
   }
 }

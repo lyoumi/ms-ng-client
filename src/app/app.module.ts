@@ -6,6 +6,7 @@ import { CandidateComponent } from './candidate/candidate.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { CandidateFormComponent } from './candidate-form/candidate-form.component';
 import { SkillFilterPipe } from './pipes/skill-filter.pipe';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { SkillFilterPipe } from './pipes/skill-filter.pipe';
   imports: [
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
