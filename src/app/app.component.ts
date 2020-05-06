@@ -5,10 +5,10 @@ export interface Skill {
   level: string
 }
 
-export interface User {
+export interface Candidate {
   name: string
   email: string
-  password: string
+  age: number
   skills: Skill[]
 }
 
@@ -19,15 +19,15 @@ export interface User {
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  users: User[] = [
-    { name: 'Vasya', email: 'pupokin@gmail.com', password: '123', skills: [{name: 'Java', level: 'Middle'}, {name: 'SQL', level: 'Junior'}] },
-    { name: 'Petya', email: 'pe@gmail.com', password: '1231', skills: [{name: 'Angular', level: 'junior'}, {name: 'HTTP', level: 'Junior'}] },
+  candidates: Candidate[] = [
+    { name: 'Vasya', email: 'pupokin@gmail.com', age: 23, skills: [{name: 'Java', level: 'Middle'}, {name: 'SQL', level: 'Junior'}] },
+    { name: 'Petya', email: 'pe@gmail.com', age: 42, skills: [{name: 'Angular', level: 'junior'}, {name: 'HTTP', level: 'Junior'}] },
     null
   ]
   search: string;
   field: string;
 
-  addUser(user: User) {
-    this.users.unshift(user)
+  addCandidate(candidate: Candidate) {
+    this.candidates.unshift(candidate)
   }
 }

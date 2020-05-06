@@ -1,6 +1,6 @@
 <div class="container">
 
-  <app-user-form (onSave)="addUser($event)"></app-user-form>
+  <app-candidate-form (onSave)="addCandidate($event)"></app-candidate-form>
 
   <div class="card">
     <input [(ngModel)]="search" placeholder="Search by everithing">
@@ -10,10 +10,10 @@
       <option value="level">Job level</option>
     </select>
 
-    <app-user
-      *ngFor="let usr of users | skillFilter:search:field"
-      [user]="usr"
-    ></app-user>
+    <app-candidate
+      *ngFor="let c of candidates | skillFilter:search:field"
+      [candidate]="c"
+    ></app-candidate>
   </div>
 
 </div>

@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {User} from "../app.component";
+import {Candidate} from "../app.component";
 
 @Pipe({
   name: 'skillFilter',
@@ -7,30 +7,30 @@ import {User} from "../app.component";
 })
 export class SkillFilterPipe implements PipeTransform {
 
-  transform(users: User[], searchText: string, field: string): User[] {
+  transform(candidates: Candidate[], searchText: string, field: string): Candidate[] {
     if (!searchText || !searchText.trim()) {
-      return users;
+      return candidates;
     }
     switch (field) {
       case 'username':
-        return users
-          .filter(user => user && user.name)
-          .filter(user => user.name.toLowerCase().includes(searchText.toLowerCase()))
+        return candidates
+          .filter(candidate => candidate && candidate.name)
+          .filter(candidate => candidate.name.toLowerCase().includes(searchText.toLowerCase()))
       case 'level':
-        return users
-          .filter(user => user && user.skills)
-          .filter(user => {
-            return user.skills
+        return candidates
+          .filter(candidate => candidate && candidate.skills)
+          .filter(candidate => {
+            return candidate.skills
               .filter(skill => skill && skill.level)
               .map(skill => skill.level)
               .filter(skillLevel => skillLevel.toLowerCase().includes(searchText.toLowerCase()))
               .length > 0;
           });
       default:
-        return users
-          .filter(user => user && user.skills)
-          .filter(user => {
-            return user.skills
+        return candidates
+          .filter(candidate => candidate && candidate.skills)
+          .filter(candidate => {
+            return candidate.skills
               .filter(skill => skill && skill.name)
               .map(skill => skill.name)
               .filter(skillName => skillName.toLowerCase().includes(searchText.toLowerCase()))

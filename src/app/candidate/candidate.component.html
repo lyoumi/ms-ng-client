@@ -1,0 +1,9 @@
+<div class="card" *ngIf="candidate">
+  <h1>{{ candidate.name }}</h1>
+  <h2>Email: {{ candidate.email }}</h2>
+  <ul>
+    <li *ngFor="let skill of candidate.skills">
+      <p>{{ skill.name }}: {{ skill.level | titlecase }}</p>
+    </li>
+  </ul>
+</div>

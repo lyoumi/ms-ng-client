@@ -1,15 +1,15 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
-import {UserValidator} from "./user.validator";
-import {User} from "../app.component";
+import {CandidateValidator} from "./candidateValidator";
+import {Candidate} from "../app.component";
 
 @Component({
-  selector: 'app-user-form',
-  templateUrl: './user-form.component.html',
-  styleUrls: ['./user-form.component.scss']
+  selector: 'app-candidate-form',
+  templateUrl: './candidate-form.component.html',
+  styleUrls: ['./candidate-form.component.scss']
 })
-export class UserFormComponent implements OnInit {
-  @Output() onSave: EventEmitter<User> = new EventEmitter<User>()
+export class CandidateFormComponent implements OnInit {
+  @Output() onSave: EventEmitter<Candidate> = new EventEmitter<Candidate>()
 
   form: FormGroup;
 
@@ -17,8 +17,8 @@ export class UserFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      email: new FormControl('', [Validators.email, Validators.required], UserValidator.uniqEmail),
-      password: new FormControl('', [Validators.required, Validators.minLength(8)]),
+      email: new FormControl('', [Validators.email, Validators.required], CandidateValidator.uniqEmail),
+      age: new FormControl(18, [Validators.required, Validators.min(18)]),
       name: new FormControl('', Validators.required),
       address: new FormGroup({
         country: new FormControl('ua'),
@@ -30,9 +30,9 @@ export class UserFormComponent implements OnInit {
 
   submit() {
     if (this.form.valid) {
-      let user: User = this.form.value;
-      this.onSave.emit(user);
-      console.log(user);
+      let candidate: Candidate = this.form.value;
+      this.onSave.emit(candidate);
+      console.log(candidate);
       this.form.reset()
     }
   }

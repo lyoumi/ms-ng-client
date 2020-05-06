@@ -2,16 +2,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { UserComponent } from './user/user.component';
+import { CandidateComponent } from './candidate/candidate.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { UserFormComponent } from './user-form/user-form.component';
+import { CandidateFormComponent } from './candidate-form/candidate-form.component';
 import { SkillFilterPipe } from './pipes/skill-filter.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserComponent,
-    UserFormComponent,
+    CandidateComponent,
+    CandidateFormComponent,
     SkillFilterPipe
   ],
   imports: [

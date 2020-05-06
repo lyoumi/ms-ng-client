@@ -1,7 +1,7 @@
 import {FormControl} from "@angular/forms";
 import {Observable} from "rxjs";
 
-export class UserValidator {
+export class CandidateValidator {
   static uniqEmail(control: FormControl): Promise<any> | Observable<any> {
     return new Promise(resolve => {
       setTimeout(() => {
