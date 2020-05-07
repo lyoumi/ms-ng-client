@@ -13,6 +13,7 @@ interface Address {
 }
 
 export interface Candidate {
+  id: String
   name: string
   email: string
   age: number
@@ -31,18 +32,27 @@ export class AppComponent implements OnInit{
   constructor(private candidateService: CandidateService) {
   }
 
-  candidates: Candidate[] = []
+  candidates: Candidate[] = [];
   search: string;
   field: string;
 
   addCandidate(candidate: Candidate) {
     this.candidateService.createCandidate(candidate)
-      .subscribe(response => console.log(response))
+      .subscribe(candidate => {
+        console.log(candidate);
+        this.candidates.push(candidate);
+      })
+  }
+
+  deleteCandidate(id: String) {
+    this.candidateService.deleteCandidate(id).subscribe(() => {
+      this.candidates = this.candidates.filter(c => c.id !== id);
+    })
   }
 
   ngOnInit(): void {
     this.candidateService.getAllCandidates().subscribe(response => {
-      console.log(response)
+      console.log(response);
       this.candidates = response;
     })
   }

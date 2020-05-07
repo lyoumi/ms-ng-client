@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
 import {Candidate} from "../app.component";
 
 @Component({
@@ -9,9 +9,14 @@ import {Candidate} from "../app.component";
 export class CandidateComponent implements OnInit {
 
   @Input() candidate: Candidate
+  @Output() onDelete: EventEmitter<String> = new EventEmitter<String>()
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  deleteCandidate(id: String) {
+    this.onDelete.emit(id);
   }
 }

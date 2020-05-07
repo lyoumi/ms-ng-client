@@ -16,6 +16,33 @@ export class CandidateFormComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.initForm();
+  }
+
+  submit() {
+    if (this.form.valid) {
+      let candidate: Candidate = this.form.value;
+      this.onSave.emit(candidate);
+      console.log(candidate);
+      this.form.reset();
+      this.initForm();
+    }
+  }
+
+  addSkill() {
+    const skill: FormGroup = new FormGroup({
+      name: new FormControl('', Validators.required),
+      level: new FormControl('junior')
+    });
+
+    (this.form.get('skills') as FormArray).insert(0, skill);
+  }
+
+  get controls() {
+    return (this.form.get('skills') as FormArray).controls;
+  }
+
+  private initForm() {
     this.form = new FormGroup({
       email: new FormControl('', [Validators.email, Validators.required], CandidateValidator.uniqEmail),
       age: new FormControl(18, [Validators.required, Validators.min(18)]),
@@ -26,27 +53,5 @@ export class CandidateFormComponent implements OnInit {
       }),
       skills: new FormArray([])
     });
-  }
-
-  submit() {
-    if (this.form.valid) {
-      let candidate: Candidate = this.form.value;
-      this.onSave.emit(candidate);
-      console.log(candidate);
-      this.form.reset()
-    }
-  }
-
-  addSkill() {
-    const skill: FormGroup = new FormGroup({
-      name: new FormControl('', Validators.required),
-      level: new FormControl('junior')
-    });
-
-    (this.form.get('skills') as FormArray).insert(0, skill)
-  }
-
-  get controls() {
-    return (this.form.get('skills') as FormArray).controls
   }
 }

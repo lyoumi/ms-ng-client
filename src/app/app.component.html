@@ -13,7 +13,9 @@
     <app-candidate
       *ngFor="let c of candidates | skillFilter:search:field"
       [candidate]="c"
-    ></app-candidate>
+      (onDelete)="deleteCandidate(c.id)"
+    >
+    </app-candidate>
   </div>
 
 </div>
