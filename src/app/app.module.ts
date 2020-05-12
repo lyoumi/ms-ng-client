@@ -7,7 +7,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { CandidateFormComponent } from './candidate-form/candidate-form.component';
 import { SkillFilterPipe } from './pipes/skill-filter.pipe';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
-import {CorrelationIdInterceptor} from "./auth/correlationIdInterceptor";
+import {CorrelationIdInterceptor} from "./auth/correlationId.interceptor";
 
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
