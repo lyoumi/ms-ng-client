@@ -1,21 +1,18 @@
+<nav class="navbar">
+  <h1>
+    <a href="#">Human resources page</a>
+  </h1>
+  <ul>
+    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="">Home</a></li>
+    <li routerLinkActive="active"><a routerLink="candidates">Candidates</a></li>
+    <li routerLinkActive="active"><a routerLink="form">New candidate</a></li>
+    <li><button class="btn">Login</button></li>
+    <li><button class="btn">Logout</button></li>
+  </ul>
+</nav>
+
 <div class="container">
-
-  <app-candidate-form (onSave)="addCandidate($event)"></app-candidate-form>
-
   <div class="card">
-    <input [(ngModel)]="search" placeholder="Search by everithing">
-    <select [(ngModel)]="field">
-      <option value="username">Username</option>
-      <option value="job title">Job title</option>
-      <option value="level">Job level</option>
-    </select>
-
-    <app-candidate
-      *ngFor="let c of candidates | skillFilter:search:field"
-      [candidate]="c"
-      (onDelete)="deleteCandidate(c.id)"
-    >
-    </app-candidate>
+    <router-outlet></router-outlet>
   </div>
-
 </div>

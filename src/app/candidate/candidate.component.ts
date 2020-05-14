@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
-import {Candidate} from "../app.component";
+import {Candidate} from "../shared/interfaces";
 
 @Component({
   selector: 'app-candidate',

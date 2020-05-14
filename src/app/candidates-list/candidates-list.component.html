@@ -1,0 +1,15 @@
+<div class="card">
+  <input [(ngModel)]="search" placeholder="Search by everithing">
+  <select [(ngModel)]="field">
+    <option value="username">Username</option>
+    <option value="job title">Job title</option>
+    <option value="level">Job level</option>
+  </select>
+
+  <app-candidate
+    *ngFor="let c of candidates | skillFilter:search:field"
+    [candidate]="c"
+    (onDelete)="deleteCandidate(c.id)"
+  >
+  </app-candidate>
+</div>

@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {Candidate} from "../app.component";
+import {Candidate} from "../shared/interfaces";
 
 @Pipe({
   name: 'skillFilter',

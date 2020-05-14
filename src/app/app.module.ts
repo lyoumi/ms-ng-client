@@ -8,6 +8,9 @@ import { CandidateFormComponent } from './candidate-form/candidate-form.componen
 import { SkillFilterPipe } from './pipes/skill-filter.pipe';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {CorrelationIdInterceptor} from "./auth/correlationId.interceptor";
+import {HomeComponent} from "./home/home.component";
+import { CandidatesListComponent } from './candidates-list/candidates-list.component';
+import {AppRoutingModule} from "./app-routing.module";
 
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
@@ -20,13 +23,16 @@ const INTERCEPTOR_PROVIDER: Provider = {
     AppComponent,
     CandidateComponent,
     CandidateFormComponent,
-    SkillFilterPipe
+    SkillFilterPipe,
+    HomeComponent,
+    CandidatesListComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [INTERCEPTOR_PROVIDER],
   bootstrap: [AppComponent]
